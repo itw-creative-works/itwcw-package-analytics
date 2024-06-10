@@ -19,7 +19,7 @@
   var SOURCE = 'library';
   var VERSION = '{version}';
 
-  function __module_title(options) {
+  function ITWCWPackageAnalytics(options) {
     var self = this;
 
     self.options = options || {};
@@ -27,7 +27,7 @@
     return self
   };
 
-  __module_title.prototype.method = function (options) {
+  ITWCWPackageAnalytics.prototype.method = function (options) {
     var self = this;
 
     options = options || {};
@@ -40,7 +40,7 @@
   // Register
   if (environment === 'browser') {
     try {
-      window.__module_title = __module_title;
+      window.ITWCWPackageAnalytics = ITWCWPackageAnalytics;
     } catch (e) {
     }
   }
@@ -48,6 +48,6 @@
   // Just return a value to define the module export.
   // This example returns an object, but the module
   // can return a function as the exported value.
-  return __module_title; // Enable if using UMD
+  return ITWCWPackageAnalytics; // Enable if using UMD
 
 }));

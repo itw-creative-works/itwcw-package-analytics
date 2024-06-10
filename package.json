@@ -1,31 +1,42 @@
 {
-  "TODO": "__module_domain, __module_name, __module_owner, __module_title, __module_description",
-  "name": "__module_name",
-  "version": "0.0.1",
-  "description": "__module_description",
+  "name": "itwcw-package-analytics",
+  "version": "1.0.0",
+  "description": "Reporting tool for ITW Creative Works packages",
   "main": "./dist/index.js",
   "scripts": {
     "test": "npm run prepare && ./node_modules/mocha/bin/mocha test/ --recursive --timeout=10000",
-    "prepare": "node -e 'require(`prepare-package`)()'"
+    "prepare": "node -e 'require(`prepare-package`)()'",
+    "prepare:watch": "nodemon -w ./src -e '*' --exec 'npm run prepare'",
+    "postinstall": "node -e 'require(`./dist/postinstall.js`)({cwd: process.env.INIT_CWD})'"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=12.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/__module_owner/__module_name"
+    "url": "git+https://github.com/itw-creative-works/itwcw-package-analytics"
   },
   "keywords": [
-    "__module_name"
+    "itwcw-package-analytics"
   ],
   "author": "ITW Creative Works",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/__module_owner/__module_name/issues"
+    "url": "https://github.com/itw-creative-works/itwcw-package-analytics/issues"
   },
-  "homepage": "https://__module_domain",
+  "homepage": "https://itwcreativeworks.com",
   "devDependencies": {
     "mocha": "^8.4.0",
-    "prepare-package": "^0.0.16"
+    "prepare-package": "^1.1.4"
+  },
+  "preparePackage": {
+    "input": "./src",
+    "output": "./dist",
+    "replace": {}
+  },
+  "dependencies": {
+    "fs-jetpack": "^4.3.1",
+    "uuid": "^9.0.1",
+    "wonderful-fetch": "^1.1.10"
   }
 }
