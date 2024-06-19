@@ -1,6 +1,6 @@
 {
   "name": "itwcw-package-analytics",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Reporting tool for ITW Creative Works packages",
   "main": "./dist/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "postinstall": "node -e \"require('./dist/postinstall.js')({cwd: process.env.INIT_CWD})\""
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=12"
   },
   "repository": {
     "type": "git",
