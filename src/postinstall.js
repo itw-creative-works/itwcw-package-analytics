@@ -8,6 +8,7 @@ module.exports = async function (options) {
   // Set the options
   options = options || {};
   options.cwd = options.cwd || process.cwd();
+  options.npmPackageName = options.npmPackageName || '';
   options.isPostInstall = typeof options.isPostInstall === 'undefined' ? false : options.isPostInstall;
 
   // Get the package.json files
