@@ -25,7 +25,7 @@
 </p>
 
 ## 🦄 Features
-* Anakytics for npm packages
+* Analytics for npm packages
 * Reporting to GA4
 
 ## 📦 Install ITWCW Package Analytics
