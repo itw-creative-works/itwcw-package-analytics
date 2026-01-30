@@ -4,6 +4,16 @@ const path = require('path');
 
 // const argv = require('yargs').argv;
 
+// Safely require a file and return null if it fails
+function safeRequire(filePath, label) {
+  try {
+    return require(filePath);
+  } catch (e) {
+    console.warn(`[itwcw-package-analytics]: Failed to load ${label} at ${filePath}:`, e.message);
+    return null;
+  }
+}
+
 module.exports = async function (options) {
   // Set the options
   options = options || {};
@@ -12,8 +22,14 @@ module.exports = async function (options) {
   options.isPostInstall = typeof options.isPostInstall === 'undefined' ? false : options.isPostInstall;
 
   // Get the package.json files
-  const thisPackageJSON = require('../package.json');
-  const theirPackageJSON = require(path.join(options.cwd, 'package.json'));
+  const thisPackageJSON = safeRequire('../package.json', 'this package.json');
+  const theirPackageJSON = safeRequire(path.join(options.cwd, 'package.json'), 'their package.json');
+
+  // Exit if either package.json failed to load
+  if (!thisPackageJSON || !theirPackageJSON) {
+    console.warn('[itwcw-package-analytics]: Skipping analytics due to missing package.json');
+    return;
+  }
 
   // Send analytics
   await sendAnalytics(thisPackageJSON, theirPackageJSON)
